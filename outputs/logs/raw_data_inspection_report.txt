@@ -1,0 +1,82 @@
+RAW DATA INSPECTION REPORT
+================================================================================
+File: C:\Users\rkrim\Desktop\Project\polarization_project_erfurt_sundhausen\data\raw\erfurt_sundhausen_1hour_raw.csv
+File size: 2024.07 KB
+Detected header line index: 8
+Rows: 11870
+Columns: 23
+
+Column names:
+01. Time[date hh:mm:ss]
+02. Elapsed Time [hh:mm:ss:ms]
+03. Normalized s 1
+04. Normalized s 2
+05. Normalized s 3
+06. S 0 [mW]
+07. S 1 [mW]
+08. S 2 [mW]
+09. S 3 [mW]
+10. Azimuth[°]
+11. Ellipticity[°]
+12. DOP[%]
+13. DOCP[%]
+14. DOLP[%]
+15. Power[mW]
+16. Pol Power[mW]
+17. Unpol Power[mW]
+18. Power[dBm]
+19. Pol Power[dBm]
+20. Unpol Power[dBm]
+21. Power-Split-Ratio
+22. Phase Difference[°]
+23. Warning
+
+Data types:
+Time[date hh:mm:ss]               str
+Elapsed Time [hh:mm:ss:ms]        str
+Normalized s 1                float64
+Normalized s 2                float64
+Normalized s 3                float64
+S 0 [mW]                      float64
+S 1 [mW]                      float64
+S 2 [mW]                      float64
+S 3 [mW]                      float64
+Azimuth[°]                    float64
+Ellipticity[°]                float64
+DOP[%]                        float64
+DOCP[%]                       float64
+DOLP[%]                       float64
+Power[mW]                     float64
+Pol Power[mW]                 float64
+Unpol Power[mW]               float64
+Power[dBm]                    float64
+Pol Power[dBm]                float64
+Unpol Power[dBm]              float64
+Power-Split-Ratio             float64
+Phase Difference[°]           float64
+Warning                       float64
+
+Missing values per column:
+Time[date hh:mm:ss]               0
+Elapsed Time [hh:mm:ss:ms]        0
+Normalized s 1                    0
+Normalized s 2                    0
+Normalized s 3                    0
+S 0 [mW]                          0
+S 1 [mW]                          0
+S 2 [mW]                          0
+S 3 [mW]                          0
+Azimuth[°]                        0
+Ellipticity[°]                    0
+DOP[%]                            0
+DOCP[%]                           0
+DOLP[%]                           0
+Power[mW]                         0
+Pol Power[mW]                     0
+Unpol Power[mW]                   0
+Power[dBm]                        0
+Pol Power[dBm]                    0
+Unpol Power[dBm]                  0
+Power-Split-Ratio                 0
+Phase Difference[°]               0
+Warning                       11870
