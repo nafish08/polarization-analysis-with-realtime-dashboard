@@ -1,6 +1,6 @@
 column,expected_range,below_range_count,above_range_count,total_out_of_range
 azimuth_deg,"[-90, 90] deg (common convention)",0,0,0
 ellipticity_deg,"[-45, 45] deg (common convention)",0,0,0
-dop_pct,"[0, 100] %",0,6516,6516
-docp_pct,"[-100, 100] %",0,133,133
-dolp_pct,"[0, 100] %",0,2214,2214
+dop_pct,"[0, 100] %",0,461304,461304
+docp_pct,"[-100, 100] %",0,5706,5706
+dolp_pct,"[0, 100] %",0,131955,131955
