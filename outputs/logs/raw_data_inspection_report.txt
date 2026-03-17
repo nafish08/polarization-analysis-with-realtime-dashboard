@@ -1,9 +1,9 @@
 RAW DATA INSPECTION REPORT
 ================================================================================
 File: C:\Users\rkrim\Desktop\Project\polarization_project_erfurt_sundhausen\data\raw\erfurt_sundhausen_1hour_raw.csv
-File size: 2024.07 KB
+File size: 180035.90 KB
 Detected header line index: 8
-Rows: 11870
+Rows: 1048567
 Columns: 23
 
 Column names:
@@ -29,7 +29,7 @@ Column names:
 20. Unpol Power[dBm]
 21. Power-Split-Ratio
 22. Phase Difference[°]
-23. Warning
+23. Warning,
 
 Data types:
 Time[date hh:mm:ss]               str
@@ -54,29 +54,29 @@ Pol Power[dBm]                float64
 Unpol Power[dBm]              float64
 Power-Split-Ratio             float64
 Phase Difference[°]           float64
-Warning                       float64
+Warning,                          str
 
 Missing values per column:
-Time[date hh:mm:ss]               0
-Elapsed Time [hh:mm:ss:ms]        0
-Normalized s 1                    0
-Normalized s 2                    0
-Normalized s 3                    0
-S 0 [mW]                          0
-S 1 [mW]                          0
-S 2 [mW]                          0
-S 3 [mW]                          0
-Azimuth[°]                        0
-Ellipticity[°]                    0
-DOP[%]                            0
-DOCP[%]                           0
-DOLP[%]                           0
-Power[mW]                         0
-Pol Power[mW]                     0
-Unpol Power[mW]                   0
-Power[dBm]                        0
-Pol Power[dBm]                    0
-Unpol Power[dBm]                  0
-Power-Split-Ratio                 0
-Phase Difference[°]               0
-Warning                       11870
+Time[date hh:mm:ss]           0
+Elapsed Time [hh:mm:ss:ms]    0
+Normalized s 1                0
+Normalized s 2                0
+Normalized s 3                0
+S 0 [mW]                      0
+S 1 [mW]                      0
+S 2 [mW]                      0
+S 3 [mW]                      0
+Azimuth[°]                    0
+Ellipticity[°]                0
+DOP[%]                        0
+DOCP[%]                       0
+DOLP[%]                       0
+Power[mW]                     0
+Pol Power[mW]                 0
+Unpol Power[mW]               0
+Power[dBm]                    0
+Pol Power[dBm]                0
+Unpol Power[dBm]              0
+Power-Split-Ratio             0
+Phase Difference[°]           0
+Warning,                      0
