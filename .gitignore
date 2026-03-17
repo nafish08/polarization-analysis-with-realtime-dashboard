@@ -14,3 +14,7 @@ outputs/tables/
 # large data files
 data/processed/*.csv
 data/raw/*.csv
+
+# large data files
+data/processed/*.csv
+data/raw/*.csv
