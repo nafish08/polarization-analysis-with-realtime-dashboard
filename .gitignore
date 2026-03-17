@@ -5,16 +5,6 @@ __pycache__/
 .DS_Store
 
 data/raw/
-
 data/processed/
-
 outputs/logs/
-
 outputs/tables/
-# large data files
-data/processed/*.csv
-data/raw/*.csv
-
-# large data files
-data/processed/*.csv
-data/raw/*.csv
