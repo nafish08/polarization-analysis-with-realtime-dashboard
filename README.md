@@ -35,6 +35,7 @@ The analysis follows three main steps:
 ---
 
 ## Project Structure
+```text
 polarization_project_erfurt_sundhausen/
 │
 ├── data/
