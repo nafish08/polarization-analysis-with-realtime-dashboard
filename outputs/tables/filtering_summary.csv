@@ -1,10 +1,10 @@
 column,min_allowed,max_allowed,newly_replaced_with_nan,missing_before,missing_after,reason
 azimuth_deg,-90,90.0,0,0,0,Common azimuth convention
 ellipticity_deg,-45,45.0,0,0,0,Common ellipticity convention
-dop_pct,0,100.0,461304,0,461304,"Degree of polarization physically expected in [0,100]"
-docp_pct,-100,100.0,5706,0,5706,"Degree of circular polarization expected in [-100,100]"
-dolp_pct,0,100.0,131955,0,131955,"Degree of linear polarization expected in [0,100]"
+dop_pct,0,100.0,1119936,0,1119936,"Degree of polarization physically expected in [0,100]"
+docp_pct,-100,100.0,10476,0,10476,"Degree of circular polarization expected in [-100,100]"
+dolp_pct,0,100.0,351644,0,351644,"Degree of linear polarization expected in [0,100]"
 power_mw,0,,0,0,0,Optical power should not be negative
 pol_power_mw,0,,0,0,0,Polarized power should not be negative
-unpol_power_mw,0,,461838,0,461838,Unpolarized power should not be negative
+unpol_power_mw,0,,1121118,0,1121118,Unpolarized power should not be negative
 sample_interval_sec,0,,0,1,1,Sample interval should be positive
