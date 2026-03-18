@@ -38,32 +38,34 @@ The analysis follows three main steps:
 polarization_project_erfurt_sundhausen/
 │
 ├── data/
-│ ├── raw/ # Raw measurement data (not included in repo)
-│ ├── processed/ # Cleaned and merged datasets (not included)
-│ └── external/ # Weather and sunrise/sunset data
+polarization_project_erfurt_sundhausen/
 │
-├── scripts/ # Python analysis scripts
-│ ├── 01_inspect_raw_data.py
-│ ├── 02_clean_polarization_data.py
-│ ├── 03_error_analysis.py
-│ ├── 03b_filter_data.py
-│ ├── 04_fetch_weather_data.py
-│ ├── 05_fetch_sunrise_sunset.py
-│ ├── 06_merge_datasets.py
-│ ├── 07_daily_correlation_analysis.py
-│ ├── 08_trend_analysis.py
-│ ├── 09_plot_three_days.py
-│ ├── 10_plot_polarization_ellipses.py
-│ └── 11_bonus_visualizations.py
+├── data/
+│   ├── raw/                # Raw measurement data (not included in repo)
+│   ├── processed/          # Cleaned and merged datasets (not included)
+│   └── external/           # Weather and sunrise/sunset data
+│
+├── scripts/                # Python analysis scripts
+│   ├── 01_inspect_raw_data.py
+│   ├── 02_clean_polarization_data.py
+│   ├── 03_error_analysis.py
+│   ├── 03b_filter_data.py
+│   ├── 04_fetch_weather_data.py
+│   ├── 05_fetch_sunrise_sunset.py
+│   ├── 06_merge_datasets.py
+│   ├── 07_daily_correlation_analysis.py
+│   ├── 08_trend_analysis.py
+│   ├── 09_plot_three_days.py
+│   ├── 10_plot_polarization_ellipses.py
+│   └── 11_bonus_visualizations.py
 │
 ├── outputs/
-│ ├── figures/ # Generated plots
-│ ├── tables/ # Analysis results
-│ └── logs/ # Reports (ignored in Git)
+│   ├── figures/            # Generated plots (included)
+│   ├── tables/             # Analysis results (included)
+│   └── logs/               # Reports (ignored in Git)
 │
 ├── README.md
 └── requirements.txt
-
 
 ---
 
