@@ -2,12 +2,12 @@
 
 ## Overview
 
-This project analyzes polarization measurements from the Erfurt–Sundhausen overhead fiber link. The goal is to investigate how polarization parameters (azimuth and ellipticity) vary over time and whether they correlate with environmental factors, specifically **surface pressure**.
+This project analyzes polarization measurements from the Erfurt–Sundhausen overhead fiber link. The objective is to investigate the temporal behavior of polarization parameters (azimuth and ellipticity) and evaluate their correlation with environmental conditions, specifically **surface pressure**.
 
-The analysis follows three main steps:
+The analysis is structured into three parts:
 
 - **Part A:** Data preparation and error analysis  
-- **Part B:** Correlation analysis with weather data  
+- **Part B:** Correlation with weather data  
 - **Part C:** Visualization and interpretation  
 
 ---
@@ -15,8 +15,8 @@ The analysis follows three main steps:
 ## Dataset
 
 ### Polarization Data
-- Source: Measurement file from PAX1000IR2/M polarimeter
-- Sampling: ~0.25 s interval (~3.9 Hz effective)
+- Source: PAX1000IR2/M polarimeter
+- Sampling rate: ~0.25 s (~3.9 Hz effective)
 - Parameters:
   - Azimuth [deg]
   - Ellipticity [deg]
@@ -24,29 +24,27 @@ The analysis follows three main steps:
   - Power metrics
 
 ### Weather Data
-- Source: Open-Meteo API
-- Variable used: **Surface pressure [hPa]**
-- Resolution: 1 hour
+- Source: Open-Meteo API  
+- Variable: **Surface pressure [hPa]**  
+- Resolution: 1 hour  
 
 ### Sunrise / Sunset Data
-- Source: Open-Meteo API
-- Used for day/night contextual analysis
+- Source: Open-Meteo API  
+- Used for day/night contextual analysis  
 
 ---
 
 ## Project Structure
+
 ```text
 polarization_project_erfurt_sundhausen/
 │
 ├── data/
-polarization_project_erfurt_sundhausen/
-│
-├── data/
 │   ├── raw/                # Raw measurement data (not included in repo)
-│   ├── processed/          # Cleaned and merged datasets (not included)
-│   └── external/           # Weather and sunrise/sunset data
+│   ├── processed/          # Cleaned datasets (not included)
+│   └── external/           # Weather & sunrise/sunset data
 │
-├── scripts/                # Python analysis scripts
+├── scripts/                # Analysis pipeline
 │   ├── 01_inspect_raw_data.py
 │   ├── 02_clean_polarization_data.py
 │   ├── 03_error_analysis.py
@@ -61,26 +59,24 @@ polarization_project_erfurt_sundhausen/
 │   └── 11_bonus_visualizations.py
 │
 ├── outputs/
-│   ├── figures/            # Generated plots (included)
-│   ├── tables/             # Analysis results (included)
+│   ├── figures/            # Generated plots
+│   ├── tables/             # Analysis results
 │   └── logs/               # Reports (ignored in Git)
 │
 ├── README.md
 └── requirements.txt
-
----
-
-## Installation
-
-Create a virtual environment and install dependencies:
-
 ```bash
 python -m venv venv
-source venv/bin/activate   # or venv\Scripts\activate on Windows
+
+# Activate environment
+# Linux / Mac:
+source venv/bin/activate
+
+# Windows:
+venv\Scripts\activate
 
 pip install -r requirements.txt
 
-Run all scripts in sequence:
 python scripts/01_inspect_raw_data.py
 python scripts/02_clean_polarization_data.py
 python scripts/03_error_analysis.py
@@ -93,3 +89,4 @@ python scripts/08_trend_analysis.py
 python scripts/09_plot_three_days.py
 python scripts/10_plot_polarization_ellipses.py
 python scripts/11_bonus_visualizations.py
+```
