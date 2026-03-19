@@ -379,3 +379,24 @@ with tab4:
             st.subheader("Removed Anomalies")
             st.markdown("Displaying the first 1000 rows of anomalous `-99.990` records.")
             st.dataframe(wrong_df.head(1000), use_container_width=True)
+        
+        # ── NEW: Active (Clean) Data Matrix ──────────────────────────────────
+        with st.container(border=True):
+            st.subheader("📋 Active Clean Data Matrix")
+            st.markdown("Showing the first **500 rows** of the clean, pipeline-filtered dataset used for all analysis.")
+            try:
+                clean_df_preview = pd.read_csv(cleaned_file, parse_dates=["timestamp"], nrows=500)
+                
+                # Column summary row
+                cc1, cc2, cc3 = st.columns(3)
+                cc1.metric("Columns", len(clean_df_preview.columns))
+                cc2.metric("Rows Shown", len(clean_df_preview))
+                cc3.metric("Date Range", f"{clean_df_preview['timestamp'].min().strftime('%b %d')} → {clean_df_preview['timestamp'].max().strftime('%b %d, %Y')}")
+                
+                st.dataframe(
+                    clean_df_preview,
+                    use_container_width=True,
+                    height=350
+                )
+            except Exception as e:
+                st.warning(f"Could not load clean data preview: {e}")

@@ -99,18 +99,19 @@ add_slide("Watching the Shape Change",
 "Tab 3 'Live Ellipse Preview'")
 
 # Slide 8
-add_slide("The Effect of Surface Pressure", 
+add_slide("The Effect of Surface Pressure",
 "• Question: Does heavy air pressure crush the glass?\n"
-"• Graph Setup: Air Pressure vs. Light Angles.\n"
+"• Graph: Air Pressure (X-axis) vs. Light Angles (Y-axis).\n"
+"• Red Trendline: A regression line calculating the pattern in one stroke.\n"
 "• Finding: Yes! High pressure strictly locks the light into specific angles.",
-"Tab 2 'Azimuth vs Pressure Scatter Plot'")
+"Tab 2 'Azimuth vs Pressure' & 'Ellipticity vs Pressure'")
 
 # Slide 9
-add_slide("Discovering Daily Rhythms", 
-"• Question: Does the sun affect the fiber every day?\n"
-"• Math Tool: Welch's Periodogram.\n"
-"• Finding: We found a massive spike exactly on the 24-hour mark.",
-"Tab 1 'Periodic Components'")
+add_slide("Discovering Daily Rhythms",
+"• Question: Does the sun affect the fiber every single day?\n"
+"• Method: Average the last 3 days of data by hour (0–23h).\n"
+"• Finding: A clear daily wave appears—the sun creates a predictable heartbeat!",
+"Tab 1 '24-Hour Daily Rhythms' chart (top right)")
 
 # Slide 10
 add_slide("Conclusion", 
@@ -119,5 +120,5 @@ add_slide("Conclusion",
 "• Final Takeaway: We can theoretically turn existing telecommunication cables into tracking networks.")
 
 os.makedirs("presentation", exist_ok=True)
-prs.save("presentation/Final_Project_Presentation_V6.pptx")
+prs.save("presentation/Final_Project_Presentation_V7.pptx")
 print("Presentation compiled successfully.")
