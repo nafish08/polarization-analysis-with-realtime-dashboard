@@ -17,15 +17,22 @@ def main():
     # Project root = one level above /scripts
     project_root = Path(__file__).resolve().parents[1]
 
-    raw_file = project_root / "data" / "raw" / "erfurt_sundhausen_1hour_raw.csv"
+    raw_file = project_root / "data" / "raw" / "20.02.2025_to_26.02.2025_sund_to_ef-FZE-IOF_port-2.csv"
     output_dir = project_root / "outputs" / "logs"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     if not raw_file.exists():
-        print(f"ERROR: File not found:\n{raw_file}")
-        print("Put your CSV file into data/raw/ and rename it to:")
-        print("erfurt_sundhausen_1hour_raw.csv")
-        return
+        print(f"File not found locally:\n{raw_file}")
+        print("Downloading from Zenodo...")
+        import urllib.request
+        url = "https://zenodo.org/records/17078970/files/20.02.2025_to_26.02.2025_sund_to_ef-FZE-IOF_port-2.csv?download=1"
+        raw_file.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            urllib.request.urlretrieve(url, raw_file)
+            print("Download complete.")
+        except Exception as e:
+            print(f"ERROR downloading file: {e}")
+            return
 
     print("=" * 80)
     print("STEP 1: RAW FILE INSPECTION")

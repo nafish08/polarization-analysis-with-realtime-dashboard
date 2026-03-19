@@ -1,6 +1,6 @@
 RAW DATA INSPECTION REPORT
 ================================================================================
-File: C:\Users\rkrim\Desktop\Project\polarization_project_erfurt_sundhausen\data\raw\erfurt_sundhausen_1hour_raw.csv
+File: G:\polarization_project_erfurt_sundhausen\data\raw\20.02.2025_to_26.02.2025_sund_to_ef-FZE-IOF_port-2.csv
 File size: 405730.30 KB
 Detected header line index: 8
 Rows: 2369654
@@ -32,12 +32,12 @@ Column names:
 23. Warning
 
 Data types:
-Time[date hh:mm:ss]               str
-Elapsed Time [hh:mm:ss:ms]        str
+Time[date hh:mm:ss]            object
+Elapsed Time [hh:mm:ss:ms]     object
 Normalized s 1                float64
 Normalized s 2                float64
 Normalized s 3                float64
-S 0 [mW]                          str
+S 0 [mW]                       object
 S 1 [mW]                      float64
 S 2 [mW]                      float64
 S 3 [mW]                      float64
@@ -54,7 +54,7 @@ Pol Power[dBm]                float64
 Unpol Power[dBm]              float64
 Power-Split-Ratio             float64
 Phase Difference[°]           float64
-Warning                           str
+Warning                        object
 
 Missing values per column:
 Time[date hh:mm:ss]                 0

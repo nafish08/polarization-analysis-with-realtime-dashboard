@@ -2,6 +2,7 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.signal import welch
 
 
 def compute_regression(x: pd.Series, y: pd.Series):
@@ -69,6 +70,44 @@ def main():
 
     summary_file = tables_dir / "global_trend_summary.csv"
     summary_df.to_csv(summary_file, index=False)
+
+    # -------------------------------------------------------------------------
+    # PERIODIC COMPONENT ANALYSIS (Power Spectral Density)
+    # -------------------------------------------------------------------------
+    def calc_periodogram(series, fs):
+        """Calculate Welch's periodogram after dropping NaNs and detrending."""
+        s = series.dropna()
+        if len(s) < 10:
+            return np.array([]), np.array([])
+        # detrend before FFT to suppress DC / linear trend in spectrum
+        s_detrended = s - s.mean()
+        f, pxx = welch(s_detrended.values, fs=fs, nperseg=min(len(s_detrended), 256))
+        return f, pxx
+
+    # We use hourly data, so fs = 1/24 cycles per hour = cycles per day if we multiply appropriately.
+    # Actually, if we treat 1 sample = 1 hour, fs=1 sample/hour.
+    # To get cycles/day, we can scale frequencies.
+    # The highest frequency is 0.5 cycles/hour (Nyquist).
+    # Let's just output frequencies in cycles/day. 1 sample = 1/24 day. So fs = 24 samples/day.
+    fs_samples_per_day = 24.0
+
+    f_az, pxx_az = calc_periodogram(df["azimuth_deg"], fs_samples_per_day)
+    f_el, pxx_el = calc_periodogram(df["ellipticity_deg"], fs_samples_per_day)
+    f_pr, pxx_pr = calc_periodogram(df["surface_pressure_hpa"], fs_samples_per_day)
+
+    # Note peak frequencies (excluding f=0 which is DC)
+    def get_peak_period(f, pxx):
+        if len(f) < 2: return np.nan
+        # Ignore the very first bin (often DC/slow drift)
+        idx = np.argmax(pxx[1:]) + 1
+        peak_f = f[idx]
+        if peak_f > 0:
+            return 1.0 / peak_f  # in days
+        return np.nan
+
+    peak_az_days = get_peak_period(f_az, pxx_az)
+    peak_el_days = get_peak_period(f_el, pxx_el)
+    peak_pr_days = get_peak_period(f_pr, pxx_pr)
 
     # -------------------------------------------------------------------------
     # TIME SERIES PLOTS
@@ -142,6 +181,26 @@ def main():
     plt.close()
 
     # -------------------------------------------------------------------------
+    # PERIODOGRAM PLOTS
+    # -------------------------------------------------------------------------
+    plt.figure(figsize=(10, 6))
+    if len(f_az) > 0:
+        plt.plot(f_az, pxx_az / pxx_az.max(), label=f"Azimuth (Peak ~{peak_az_days:.2f} days)")
+    if len(f_el) > 0:
+        plt.plot(f_el, pxx_el / pxx_el.max(), label=f"Ellipticity (Peak ~{peak_el_days:.2f} days)")
+    if len(f_pr) > 0:
+        plt.plot(f_pr, pxx_pr / pxx_pr.max(), label=f"Pressure (Peak ~{peak_pr_days:.2f} days)", linestyle="--")
+
+    plt.title("Normalized Power Spectral Density")
+    plt.xlabel("Frequency [cycles / day]")
+    plt.ylabel("Normalized Power Density")
+    plt.xlim(0, max(f_az) if len(f_az) > 0 else 12)
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig(figures_dir / "periodogram_analysis.png", dpi=200)
+    plt.close()
+
+    # -------------------------------------------------------------------------
     # REPORT
     # -------------------------------------------------------------------------
     report_file = logs_dir / "trend_analysis_report.txt"
@@ -165,7 +224,16 @@ def main():
             "Low correlation values indicate weak or no linear relationship between polarization and pressure.\n"
         )
         report.write(
-            "The slope represents the change in polarization per 1 hPa pressure change.\n"
+            "The slope represents the change in polarization per 1 hPa pressure change.\n\n"
+        )
+
+        report.write("PERIODIC COMPONENT ANALYSIS\n")
+        report.write("-" * 80 + "\n")
+        report.write(f"Dominant period for Azimuth:     {peak_az_days:.2f} days\n")
+        report.write(f"Dominant period for Ellipticity: {peak_el_days:.2f} days\n")
+        report.write(f"Dominant period for Pressure:    {peak_pr_days:.2f} days\n\n")
+        report.write(
+            "The periodogram helps reveal rhythmic day/night patterns (a strong peak near 1 cycle/day suggests a diurnal 24-hour cycle).\n"
         )
 
     # -------------------------------------------------------------------------
@@ -177,6 +245,11 @@ def main():
 
     print(f"\nSlope (Azimuth vs Pressure):     {slope_az}")
     print(f"Slope (Ellipticity vs Pressure): {slope_el}")
+
+    print("\nPERIODIC COMPONENTS (Dominant Periods in Days):")
+    print(f"Azimuth:     {peak_az_days:.2f}")
+    print(f"Ellipticity: {peak_el_days:.2f}")
+    print(f"Pressure:    {peak_pr_days:.2f}")
 
     print(f"\nSummary saved to:\n{summary_file}")
     print(f"Figures saved to:\n{figures_dir}")

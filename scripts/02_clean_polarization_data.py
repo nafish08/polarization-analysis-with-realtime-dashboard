@@ -47,7 +47,7 @@ def parse_elapsed_time_to_seconds(value: str) -> float:
 def main():
     project_root = Path(__file__).resolve().parents[1]
 
-    raw_file = project_root / "data" / "raw" / "erfurt_sundhausen_1hour_raw.csv"
+    raw_file = project_root / "data" / "raw" / "20.02.2025_to_26.02.2025_sund_to_ef-FZE-IOF_port-2.csv"
     processed_dir = project_root / "data" / "processed"
     logs_dir = project_root / "outputs" / "logs"
 
@@ -55,8 +55,17 @@ def main():
     logs_dir.mkdir(parents=True, exist_ok=True)
 
     if not raw_file.exists():
-        print(f"ERROR: File not found:\n{raw_file}")
-        return
+        print(f"File not found locally:\n{raw_file}")
+        print("Downloading from Zenodo...")
+        import urllib.request
+        url = "https://zenodo.org/records/17078970/files/20.02.2025_to_26.02.2025_sund_to_ef-FZE-IOF_port-2.csv?download=1"
+        raw_file.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            urllib.request.urlretrieve(url, raw_file)
+            print("Download complete.")
+        except Exception as e:
+            print(f"ERROR downloading file: {e}")
+            return
 
     print("=" * 80)
     print("STEP 2: CLEAN POLARIZATION DATA")
@@ -150,6 +159,16 @@ def main():
 
     # Create a copy for cleaned analysis
     cleaned_df = df.copy()
+
+    # Create a dataset of the "wrong" or anomalous data
+    wrong_mask = pd.Series(False, index=df.index)
+    for col in numeric_columns:
+        wrong_mask = wrong_mask | (df[col] == placeholder_value)
+    wrong_mask = wrong_mask | df["timestamp"].isna()
+    
+    wrong_df = df[wrong_mask].copy()
+    wrong_file = processed_dir / "wrong_data.csv"
+    wrong_df.to_csv(wrong_file, index=False)
 
     # Replace placeholder -99.990 with NaN
     for col in numeric_columns:

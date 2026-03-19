@@ -1,10 +1,25 @@
+# Virtual Environments & Caches
 venv/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
 .DS_Store
+.env
 
+# Raw and Processed Datasets (Prevent Gigantic Commits)
 data/raw/
 data/processed/
+data/external/
+*.csv
+*.parquet
+*.h5
+
+# Script Computation Outputs
 outputs/logs/
 outputs/tables/
+outputs/figures/
+
+# Media & Heavy Presentation Artifacts
+*.pptx
+*.pdf
+*.mp4
